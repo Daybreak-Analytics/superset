@@ -27,6 +27,47 @@ from typing import Optional
 
 from cachelib.file import FileSystemCache
 from celery.schedules import crontab
+from flask_appbuilder.security.manager import AUTH_OAUTH
+
+# Set the authentication type to OAuth
+AUTH_TYPE = AUTH_OAUTH
+
+OAUTH_PROVIDERS = [
+    {
+        "name": "google",
+        "icon": "fa-google",
+        "token_key": "access_token",
+        "remote_app": {
+            "client_id": "543245557388-rh3q5imb3nt18m5cf626emgkcmsoaf2g.apps.googleusercontent.com",
+            "client_secret": "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",
+            "api_base_url": "https://www.googleapis.com/oauth2/v2/",
+            "client_kwargs": {"scope": "email profile"},
+            "request_token_url": None,
+            "access_token_url": "https://accounts.google.com/o/oauth2/token",
+            "authorize_url": "https://accounts.google.com/o/oauth2/auth",
+            "jwks_uri": "https://www.googleapis.com/oauth2/v3/certs",
+        },
+    },
+    {
+        "name": "aws_cognito",
+        "icon": "fa-amazon",
+        "token_key": "access_token",
+        "remote_app": {
+            "client_id": "3h3om6te5622h6umd2esc2n9v8",
+            "client_secret": "1oohoae5ja5h04gbidlfsuv79psecu7sfffap084blbtrk5l4dlb",
+            "api_base_url": "https://COGNITO_APP.auth.REGION.amazoncognito.com/",
+            "client_kwargs": {"scope": "openid email aws.cognito.signin.user.admin"},
+            "access_token_url": "https://COGNITO_APP.auth.REGION.amazoncognito.com/token",
+            "authorize_url": "https://COGNITO_APP.auth.REGION.amazoncognito.com/authorize",
+        },
+    }
+]
+
+# Will allow user self registration, allowing to create Flask users from Authorized User
+AUTH_USER_REGISTRATION = True
+
+# The default user self registration role
+AUTH_USER_REGISTRATION_ROLE = "Public"
 
 logger = logging.getLogger()
 
@@ -68,6 +109,16 @@ REDIS_CELERY_DB = get_env_variable("REDIS_CELERY_DB", "0")
 REDIS_RESULTS_DB = get_env_variable("REDIS_RESULTS_DB", "1")
 
 RESULTS_BACKEND = FileSystemCache("/app/superset_home/sqllab")
+
+CACHE_CONFIG = {
+    "CACHE_TYPE": "redis",
+    "CACHE_DEFAULT_TIMEOUT": 300,
+    "CACHE_KEY_PREFIX": "superset_",
+    "CACHE_REDIS_HOST": REDIS_HOST,
+    "CACHE_REDIS_PORT": REDIS_PORT,
+    "CACHE_REDIS_DB": REDIS_RESULTS_DB,
+}
+DATA_CACHE_CONFIG = CACHE_CONFIG
 
 
 class CeleryConfig(object):
