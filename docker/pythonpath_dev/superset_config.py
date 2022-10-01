@@ -30,7 +30,7 @@ from celery.schedules import crontab
 from flask_appbuilder.security.manager import AUTH_OAUTH
 
 # Set the authentication type to OAuth
-AUTH_TYPE = AUTH_OAUTH
+# AUTH_TYPE = AUTH_OAUTH
 
 OAUTH_PROVIDERS = [
     {
@@ -39,7 +39,7 @@ OAUTH_PROVIDERS = [
         "token_key": "access_token",
         "remote_app": {
             "client_id": "543245557388-rh3q5imb3nt18m5cf626emgkcmsoaf2g.apps.googleusercontent.com",
-            "client_secret": "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",
+            "client_secret": "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",
             "api_base_url": "https://www.googleapis.com/oauth2/v2/",
             "client_kwargs": {"scope": "email profile"},
             "request_token_url": None,
@@ -53,8 +53,8 @@ OAUTH_PROVIDERS = [
         "icon": "fa-amazon",
         "token_key": "access_token",
         "remote_app": {
-            "client_id": "3h3om6te5622h6umd2esc2n9v8",
-            "client_secret": "1oohoae5ja5h04gbidlfsuv79psecu7sfffap084blbtrk5l4dlb",
+            "client_id": "t9mpcc8sgkso5l3p8q03ovqk3",
+            "client_secret": "1u1hn9o4k2kgrk0heoq923lnnkci01b1sfd8caqbmole14l9m8q6",
             "api_base_url": "https://COGNITO_APP.auth.REGION.amazoncognito.com/",
             "client_kwargs": {"scope": "openid email aws.cognito.signin.user.admin"},
             "access_token_url": "https://COGNITO_APP.auth.REGION.amazoncognito.com/token",
@@ -63,11 +63,12 @@ OAUTH_PROVIDERS = [
     }
 ]
 
-# Will allow user self registration, allowing to create Flask users from Authorized User
-AUTH_USER_REGISTRATION = True
+# # Will allow user self registration, allowing to create Flask users from Authorized User
+# AUTH_USER_REGISTRATION = True
 
-# The default user self registration role
-AUTH_USER_REGISTRATION_ROLE = "Public"
+# # The default user self registration role
+# AUTH_USER_REGISTRATION_ROLE = "Public"
+PUBLIC_ROLE_LIKE = "Gamma"
 
 logger = logging.getLogger()
 
@@ -141,10 +142,11 @@ class CeleryConfig(object):
 
 
 CELERY_CONFIG = CeleryConfig
+SESSION_COOKIE_SAMESITE = "Lax"
 
 FEATURE_FLAGS = {"ALERT_REPORTS": True}
 ALERT_REPORTS_NOTIFICATION_DRY_RUN = True
-WEBDRIVER_BASEURL = "http://superset:8088/"
+WEBDRIVER_BASEURL = "http://superset:80/"
 # The base URL for the email report hyperlinks.
 WEBDRIVER_BASEURL_USER_FRIENDLY = WEBDRIVER_BASEURL
 

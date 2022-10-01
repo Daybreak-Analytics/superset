@@ -48,7 +48,7 @@ services:
     user: "root"
     restart: unless-stopped
     ports:
-      - 8088:8088
+      - 80:80
     depends_on: *superset-depends-on
     volumes: *superset-volumes
 
@@ -80,6 +80,15 @@ services:
     depends_on: *superset-depends-on
     user: "root"
     volumes: *superset-volumes
+
+  nginx:
+    image: superset-nginx
+    # build:
+    #   context: ./nginx
+    ports:
+      - "443:443"
+    depends_on:
+      - superset
 
 volumes:
   superset_home:
