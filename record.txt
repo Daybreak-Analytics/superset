@@ -1,0 +1,26 @@
+docker-compose-non-dev.yml 中 nginx那一部分 不需要build, 指定image就可以
+
+每次启动的时候 docker-compose -f docker-compose-non-dev.yml up就可以
+每次关闭的时候 docker-compose down就可以, 这里会有一个error, 暂时不知道如何处理
+
+
+
+loading.gif
+favicon.png
+
+docker cp ./images/loading.gif dfb79db4f882:/app/superset/static/assets/images/newloading.gif 
+cd /app/superset/static/assets/images/
+rm loading.gif && mv newloading.gif loading.gif
+
+docker cp ./images/favicon.png dfb79db4f882:/app/superset/static/assets/images/daybreak.png 
+rm 
+
+
+docker cp ./images/index.html fcdfaf854b87:/usr/local/lib/python3.8/site-packages/flask_appbuilder/templates/appbuilder/newindex.html
+
+docker cp fcdfaf854b87:/app/superset/static/assets/images/loading.gif  ./loading.gif
+
+dockjer
+
+
+docker exec -i -t  dfb79db4f882 /bin/bash

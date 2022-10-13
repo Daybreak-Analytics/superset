@@ -47,21 +47,16 @@ OAUTH_PROVIDERS = [
             "authorize_url": "https://accounts.google.com/o/oauth2/auth",
             "jwks_uri": "https://www.googleapis.com/oauth2/v3/certs",
         },
-    },
-    {
-        "name": "aws_cognito",
-        "icon": "fa-amazon",
-        "token_key": "access_token",
-        "remote_app": {
-            "client_id": "t9mpcc8sgkso5l3p8q03ovqk3",
-            "client_secret": "1u1hn9o4k2kgrk0heoq923lnnkci01b1sfd8caqbmole14l9m8q6",
-            "api_base_url": "https://COGNITO_APP.auth.REGION.amazoncognito.com/",
-            "client_kwargs": {"scope": "openid email aws.cognito.signin.user.admin"},
-            "access_token_url": "https://COGNITO_APP.auth.REGION.amazoncognito.com/token",
-            "authorize_url": "https://COGNITO_APP.auth.REGION.amazoncognito.com/authorize",
-        },
     }
 ]
+
+# Visual Customizations
+APP_NAME = "DayBreak"
+APP_ICON = "/static/assets/images/daybreak.png"
+# Path for routing when APP_ICON image is clicked
+LOGO_TARGET_PATH = '/' # Forwards to /superset/welcome/home
+LOGO_TOOLTIP = "Go Home" # Text displayed when hovering.
+FAVICONS = [{"href": "/static/assets/images/daybreak.png"}]
 
 # # Will allow user self registration, allowing to create Flask users from Authorized User
 # AUTH_USER_REGISTRATION = True
