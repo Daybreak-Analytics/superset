@@ -8,19 +8,25 @@ docker-compose-non-dev.yml 中 nginx那一部分 不需要build, 指定image就�
 loading.gif
 favicon.png
 
-docker cp ./images/loading.gif dfb79db4f882:/app/superset/static/assets/images/newloading.gif 
+
+loading gif: 
+docker cp ./images/loading.gif 3ec7f2dc1cd1:/app/superset/static/assets/images/newloading.gif 
 cd /app/superset/static/assets/images/
 rm loading.gif && mv newloading.gif loading.gif
 
-docker cp ./images/favicon.png dfb79db4f882:/app/superset/static/assets/images/daybreak.png 
+
+docker cp ./images/favicon.png 3ec7f2dc1cd1:/app/superset/static/assets/images/daybreak.png 
 rm 
+mv
 
 
-docker cp ./images/index.html fcdfaf854b87:/usr/local/lib/python3.8/site-packages/flask_appbuilder/templates/appbuilder/newindex.html
-
-docker cp fcdfaf854b87:/app/superset/static/assets/images/loading.gif  ./loading.gif
-
-dockjer
 
 
 docker exec -i -t  dfb79db4f882 /bin/bash
+
+
+# AUTH_TYPE = AUTH_OAUTH
+superset_config里面的这句话控制登录方式
+
+
+跑起来superset之后, 到网站上链接数据库即可
